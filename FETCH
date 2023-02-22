@@ -1,5 +1,5 @@
 fetch('https:reqres.in/api/users/')
-//check whether the user are available.
+//check whether the users are available.
 .then(response => {
     if (response.ok) {
         console.log('Success')
