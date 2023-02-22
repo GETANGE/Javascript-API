@@ -1,0 +1,25 @@
+fetch('https:reqres.in/api/users/')
+//check whether the user are available.
+.then(response => {
+    if (response.ok) {
+        console.log('Success')
+    }
+    else {
+        console.log('Not successful')
+    }
+})
+.then(data => console.log(data))
+.catch(error => console.log(error))
+
+//deleting  data from server.
+fetch('https:reqres.in/api/users' ,{
+    method: 'POST',
+    headers:{
+           'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: 'user 2'
+    })
+})
+.then(data => console.log(data))
+.catch(error => console.log(error))
