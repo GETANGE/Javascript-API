@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch API using javascript fetch function</title>
+</head>
+<body>
+    <button id="getText">Get text</button><br>
+    <button id="getUsers">Get Items</button>
+    <p id="Text"></p>
+</body>
+  <script>
+    //add event listener.
+    let Text = document.getElementById("getText");
+    Text.addEventListener('click', getText)
+     function getText(){
+        fetch('sample.txt')
+        .then(response =>{
+            //response containing the text content.
+            return response.text()
+        })
+
+        .then(data =>{
+            let text=document.getElementById('Text').innerHTML=data;
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+     }
+
+     //second event listener
+     let Users=document.getElementById('getUsers');
+     Users.addEventListener('click',getUsers)
+      function getUsers(){
+        fetch('fetch.json')
+        .then(response =>{
+            return response.json();
+        })
+        .then(data =>{
+    let Text='<h2>Users</h2>';
+    if (Array.isArray(data)) {
+        data.forEach(function(user){
+            Text +=`
+            <ul>
+                <li>ID: ${user.id}</li>
+                <li>Name: ${user.name}</li>
+                <li>Email: ${user.email}</li>
+                <li>Phone: ${user.phone}</li>
+            </ul>
+            `;
+        });
+    }
+    else {
+        Text += "<p>Data is not an array.</p>";
+    }
+    document.getElementById("Text").innerHTML = Text;
+})
+        .catch(error =>{
+            console.log(error);
+        })
+      }
+  </script>
+</html>
